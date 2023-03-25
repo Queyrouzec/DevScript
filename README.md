@@ -5,6 +5,7 @@ This is an initial set of opinions on what a version of javascript made for deve
 
 Because this is an initial opinion, outside input is strongly encouraged.
 Much of this takes inspration from Dart, Rust, and other functional languages.
+The syntax in this README is not the planned upon syntax, it is just what ever I thought would best convey my intent. It will be updated in the future to reflect the language.
 
 ## Goals
 ### Everything should be allowed to exist inline in one document
@@ -32,6 +33,17 @@ State management should have it's own syntax for commen state management impleme
 Strictly enforced. There should be no optional types, and it should be null safe.
 Types should be intimate with their declaration. Typedefs should not be seperate from their constructors.
 I have an affinity for how Dart handles null and types.
+Declairation of types will be local by default and can take the place of let.
+```
+Str something = "hi";
+```
+vs
+```
+let something: Str = "hi";
+```
+This is so that writing types will be as quick as declaration and make type declaration vs type inference a low cost choice.
+All basic types should be 3 letters in length unless there is an otherwise compelling reason.
+Types will be required for function parameters and returns. This is to keep your intent clear.
 
 ### Mutablility
 
@@ -45,7 +57,8 @@ There should be context that require you to use all of your enums.
 Switch should be a JS switch statement while match compiles to `if(){} else if(){} else if(){} else{}`.
 You should be allowed to put exclusively classes, exclusively keywords or some other exclusive type as your enum.
 You should have to opt into matching multiple statements.
-```switch(expression) {
+```
+switch(expression) {
   case x:
     // something
   case y:
