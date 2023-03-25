@@ -147,3 +147,14 @@ searchDog(String name: name) {
 ### Try Catch will stay but there will be other options to avoid hidden control flow
 There should be a built in way to propigate errors
 There will be a explicit style of error like in rust that doesn't crash the program.
+
+## It will be written in Rust
+
+Queue the memes, I want to rewrite JS in rust.
+
+but why?
+
+Rust is the low level language that most closely follows my philosophy of clear dev communication while being very fast.
+There are faster low level languages but I probably won't significant use of any features outside of Rust and, it has the best developer communication out of any other low level language, meaning that for this project it'll probable end up being the fastest choice in development and speed. (bugs make things slow too!)
+
+God bless
