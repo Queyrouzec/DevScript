@@ -30,7 +30,8 @@ The syntax in this README is not the planned upon syntax, it is just what ever I
 
 ### Types
 
-- Strictly enforced. There should be no optional types, and it should be null safe.
+- Strictly enforced. The compiler must know a variables type. There should be type infrances.
+- It should be null safe.
 - Types should be intimate with their declaration. Typedefs should not be seperate from their constructors.
 - I have an affinity for how Dart handles null and types.
 - Declairation of types will be local by default and can take the place of let.
