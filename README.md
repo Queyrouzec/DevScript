@@ -100,6 +100,7 @@ console.log(num);
 - There should be abstract classes
 - Developers should be allowed to limit the depth of classes or only allow classes to be formed from abstract classes. This should aliviate some of the - - head ache with deeply nested subclasses while giving the benifits of classes.
 - You should be allowed to use Rust style traits or functions that are injected into a class.
+see [concepts/oop.md](https://github.com/Queyrouzec/dev_script/blob/main/concepts/oop.md) for more details
 
 ### Code organization
 
