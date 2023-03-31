@@ -135,11 +135,11 @@ class Hood {
 }
 ```
 
-Now my engine weight is in a predictable spot and I don't have to worry about the calculations for cylinderVolume to be
-in multiple spots in my program.
+Now my engine weight is in a predictable spot, and because of that I don't have to worry about the calculations for
+cylinderVolume to be in multiple spots in my program.
 
-This doesn't mean you should always use classes or that this is always the solution for this particular problem, but
-understanding what benifits they can bring over functions is very useful.
+I'm not endorsing only using classes or that this is always the solution for this particular problem, but understanding
+what benifits classes or structures can bring over functions is very useful.
 
 ## What Should Class Decloration Look Like
 
