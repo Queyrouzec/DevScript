@@ -228,10 +228,14 @@ searchDog(String name: name) {
 }
 ```
 
-### Try Catch will stay but there will be other options to avoid hidden control flow
+### Try Catch Will Stay But There Will Be Other Options to Avoid Hidden Control Flow
 
 - There should be a built in way to propigate errors
 - There will be a explicit style of error like in rust that doesn't crash the program.
+
+### The `this` Keyword Either a Bug or Someone Who Thought He Was Being Clever. Either Way It's Silly
+
+- The compiler should let you bind this for debugging.
 
 ## Wish List
 
