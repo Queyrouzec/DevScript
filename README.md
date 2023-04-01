@@ -34,15 +34,16 @@ TS syntax will be the only ones with complete accaracy when not disscussing ways
 - You can't make code that's fast and small if you don't know what you're building.
 - This can be very useful for servers
 
+### You Should Be Allowed to Freely Add to the Language
+
+- Will allow for the server to use all the built in tools for the language with little hassle including editing
+TreeSitter grammer
+
 ### Should Cater to Server Side Rendering
 
 - Cannot be fast and sustainable without this.
-
-### You Should Be Allowed to Freely Add to the Language
-
-- This is for server side rendering.
-- Will allow for the server to use all the built in tools for the language with little hassle including editing
-TreeSitter grammer
+- This is a major part of the reason why there needs to be a built in minifier and TreeSitter support and the entire
+reason adding to the language is not tenative.
 
 ### You Should Be Allowed to Freely Remove from the Core Language
 
@@ -231,6 +232,18 @@ searchDog(String name: name) {
 
 - There should be a built in way to propigate errors
 - There will be a explicit style of error like in rust that doesn't crash the program.
+
+## Wish List
+
+### DevScript Terminal
+- BASH is never used as a language. In fact, sometimes I forget it is a language.
+- Static type setting can probably improve the terminal experiance.
+- Extensibility of the language can allow for built in BASH style parameter support.
+- As a scripting language, as long as it isn't used for terminal based projects but instead calls terminal based
+projects (I'm looking at you Python), it can be very fast at running programs.
+- It would need to have sub enviorments because envs are a hassle otherwise.
+- We must complete the if it can be writting in JS it will be written in JS meme.
+- This will require removing parenthsis from functions which isn't a priority.
 
 ## It will be written in Rust
 
