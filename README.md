@@ -1,28 +1,44 @@
 # DevScript
 A superset of Javascript
 
-This is an initial set of opinions on what a version of javascript made for developers would look like and is currently very tentative.
+This is an initial set of opinions on what a version of javascript made for developers would look like. It is currently
+very tentative.
 
 Because this is an initial opinion, outside input is strongly encouraged.
-Much of this takes inspration from Dart, Rust, and other functional languages.
-The syntax in this README is not the planned upon syntax, it is just what ever I thought would best convey my intent. It will be updated in the future to reflect the language.
+Much of this takes inspration from Dart, Rust, and Elixir.
+The syntax in this README is not the planned upon syntax; it is just what ever I thought would best convey my intent. It
+will be updated in the future to reflect the language.
+
+__Not all syntax or functions match or work in examples from specific languages. This is so that people who aren't from
+those languages can understand what's going on__
+for example `print(object)` is going to make more sense than `IO.inspect object`. Since this is a superset of JS, JS and
+TS syntax will be the only ones with complete accaracy when not disscussing ways to add to their syntax.
 
 ## Goals
+
+### You Should Be Allowed to Freely Add or Take Away From the Language.
+- TODO
+
 ### Everything should be allowed to exist inline in one document
 
 - HTML is glorified gui objects. That's not nessisarily a bad thing, but it should be better integrated with js.
 - CSS is a glorified set of properties in a obscure way. This is potentially a bad thing.
-- You should be allowed to write tests inline without them being compiled into the final file and you should be allowed to put them in your documentation.
+- You should be allowed to write tests inline without them being compiled into the final file and you should be allowed
+to put them in your documentation.
 
 ### Be as close to the language as possible
 
-- There should be no hidden compiler optimizations when reasonable. Compilation should be almost as preditcable as Typescript.
+- There should be no hidden compiler optimizations when reasonable. Compilation should be almost as preditcable as
+Typescript.
 - The compiler should take no performance away from Javascript even if you can blow your foot off.
-- This creates a problem with CSS because in order to make the most out of CSS you need to make use of the cascading part and give universal access to all - HTML objects. That option should still exist even if it is a massive foot gun. This makes choices with CSS very tenitive.
+- This creates a problem with CSS because in order to make the most out of CSS you need to make use of the cascading
+part and give universal access to all - HTML objects. That option should still exist even if it is a massive foot gun.
+This makes choices with CSS very tenitive.
 
 ### Intent is built in
 
-- The intent of the developer should be enforced by the language at every possible turn. This changes from topic to topic so we'll get into what this means further down.
+- The intent of the developer should be enforced by the language at every possible turn. This changes from topic to
+topic so we'll get into what this means further down.
 
 ### State is a first class citizen.
 
@@ -35,14 +51,15 @@ The syntax in this README is not the planned upon syntax, it is just what ever I
 - Types should be intimate with their declaration. Typedefs should not be seperate from their constructors.
 - I have an affinity for how Dart handles null and types.
 - Declairation of types will be local by default and can take the place of let.
-```
+```javascript
 Str something = "hi";
 ```
 vs
-```
+```typescript
 let something: Str = "hi";
 ```
-This is so that writing types will be as quick as declaration and make type declaration vs type inference a low cost choice.
+This is so that writing types will be as quick as declaration and make type declaration vs type inference a low cost
+choice.
 - All basic types should be 3 letters in length unless there is an otherwise compelling reason.
 - Types will be required for function parameters and returns. This is to keep your intent clear.
 
@@ -56,9 +73,31 @@ This is so that writing types will be as quick as declaration and make type decl
 - You should be able to match logical patterns.
 - There should be context that require you to use all of your enums.
 - Switch should be a JS switch statement while match compiles to `if(){} else if(){} else if(){} else{}`.
+- Match statements should allow for logical deconstruction and matches.
+```javascript
+match (randomObject) {
+  {one: 1, two: two} -> console.log(two) // 2
+  [1, 2, three] -> console.log(three) // 3 
+}
+```
+- Elixir like with statements should also be allowed.
+```Elixir
+with 
+  # this statement must match in order to move on to the next one
+  {one: 1, two: two, arrayOfNumbers: array} -> someObject,
+  # you can use variables from previous statements
+  [1, 2, three] -> array do
+  print(two) # 2
+  print(three) # 3
+else
+  # can also have matching statements
+  {one: one} -> print(one) # 1
+  x -> print(x) # prints either someObject or array depending on what one doesn't match
+end
+```
 - You should be allowed to put exclusively classes, exclusively keywords or some other exclusive type as your enum.
 - You should have to opt into matching multiple statements.
-```
+```javascript
 switch(expression) {
   case x:
     // something
@@ -82,7 +121,7 @@ switch(expression) req break {
 - Match statements shouldn't break. (tenative)
 
 - A switch or match statement statement should be allowed to evaluate to it's value
-```
+```javascript
 String num = switch(2) eval {
   case 1:
     "one";
@@ -98,7 +137,8 @@ console.log(num);
 ### Classes
 
 - There should be abstract classes
-- Developers should be allowed to limit the depth of classes or only allow classes to be formed from abstract classes. This should aliviate some of the - - head ache with deeply nested subclasses while giving the benifits of classes.
+- Developers should be allowed to limit the depth of classes or only allow classes to be formed from abstract classes.
+This should aliviate some of the - - head ache with deeply nested subclasses while giving the benifits of classes.
 - You should be allowed to use Rust style traits or functions that are injected into a class.
 see [concepts/oop.md](https://github.com/Queyrouzec/dev_script/blob/main/concepts/oop.md) for more details
 
@@ -106,7 +146,7 @@ see [concepts/oop.md](https://github.com/Queyrouzec/dev_script/blob/main/concept
 
 - include modules
 - include Elixir style aritable functions:
-```
+```javascript
 // different functions that can all be called based on what is passed to doSomething
 doSomething() => 1;
 doSomething(x) => x;
@@ -115,14 +155,15 @@ doSomething(Int one: x) => x;
 doSomething(Int two: y) => y;
 ```
 - include the ability to call different functions based on parameter type like in Rust
-```
+```javascript
 doSomething(Int x) => console.log(x + 1);
 doSomething(String y) => console.log(y);
 doSomething("hi");
 // "hi"
 ```
-This helps discoverability, organization, and reduces the wordiness of functions in implimentation. It also allows you to seperate logic much easier.
-```
+This helps discoverability, organization, and reduces the wordiness of functions in implimentation. It also allows you
+to seperate logic much easier.
+```javascript
 searchDogByHairColor(String color) {
   // ...
 }
@@ -158,6 +199,8 @@ Queue the memes, I want to rewrite JS in rust.
 but why?
 
 Rust is the low level language that most closely follows my philosophy of clear dev communication while being very fast.
-There are faster low level languages but I probably won't make significant use of any features outside of Rust, and it has the best developer communication out of any other low level language. This means that for this project, Rust will probable end up being the fastest choice for development and speed. (bugs make things slow too!)
+There are faster low level languages but I probably won't make significant use of any features outside of Rust, and it
+has the best developer communication out of any other low level language. This means that for this project, Rust will
+probable end up being the fastest choice for development and speed. (bugs make things slow too!)
 
 God bless
