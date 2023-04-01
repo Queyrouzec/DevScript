@@ -16,8 +16,40 @@ TS syntax will be the only ones with complete accaracy when not disscussing ways
 
 ## Goals
 
-### You Should Be Allowed to Freely Add or Take Away From the Language.
-- TODO
+### Fast and Sustainable
+
+- JS and by proxy TS can't do either very well.
+
+### Complete Package
+
+- Minifier/uglifier
+- Syntax highlighting that can compile into TreeSitter highlighing. (More on this later)
+- linter
+- package manager
+- dap
+- lsp
+
+### The Compiler Should Be Able to Show You What You're Building in Real Time
+
+- You can't make code that's fast and small if you don't know what you're building.
+- This can be very useful for servers
+
+### Should Cater to Server Side Rendering
+
+- Cannot be fast and sustainable without this.
+
+### You Should Be Allowed to Freely Add to the Language
+
+- This is for server side rendering.
+- Will allow for the server to use all the built in tools for the language with little hassle including editing
+TreeSitter grammer
+
+### You Should Be Allowed to Freely Remove from the Core Language
+
+- This may be a landmine, so it is tentative
+- This may be insignificant with a linter if the language is fast enough, so it is at the back of the queue
+- If there's a commen set of unused features that doesn't work with a server or that people don't want to use it should
+be removable from the language so that the compiler can move faster.
 
 ### Everything should be allowed to exist inline in one document
 
@@ -28,7 +60,7 @@ to put them in your documentation.
 
 ### Be as close to the language as possible
 
-- There should be no hidden compiler optimizations when reasonable. Compilation should be almost as preditcable as
+- There should be no hidden compiler optimizations within reason. Compilation should be almost as preditcable as
 Typescript.
 - The compiler should take no performance away from Javascript even if you can blow your foot off.
 - This creates a problem with CSS because in order to make the most out of CSS you need to make use of the cascading
@@ -50,23 +82,30 @@ topic so we'll get into what this means further down.
 - It should be null safe.
 - Types should be intimate with their declaration. Typedefs should not be seperate from their constructors.
 - I have an affinity for how Dart handles null and types.
+- All basic types should be 3 letters in length unless there is an otherwise compelling reason.
 - Declairation of types will be local by default and can take the place of let.
 ```javascript
 Str something = "hi";
 ```
 vs
 ```typescript
-let something: Str = "hi";
+let something: String = "hi";
 ```
-This is so that writing types will be as quick as declaration and make type declaration vs type inference a low cost
+This is so that writing types will be as quick as declarations and make type declaration vs type inference a low cost
 choice.
-- All basic types should be 3 letters in length unless there is an otherwise compelling reason.
-- Types will be required for function parameters and returns. This is to keep your intent clear.
+- If you want to use var it may look something like this
+```javascript
+var Str something = "hi";
+```
+- Types will be required for function parameters and returns. This is to keep your intent clear to other devs.
 
 ### Mutablility
 
 - Rust style mutablility.
 - Variables are immuntable by defualt; and if a function is going to change a variable, it should declare that change.
+```rust
+  mut variable = "x";
+```
 
 ### Enums, switch statements, and match statements
 
@@ -77,7 +116,7 @@ choice.
 ```javascript
 match (randomObject) {
   {one: 1, two: two} -> console.log(two) // 2
-  [1, 2, three] -> console.log(three) // 3 
+  [1, 2, three] -> console.log(three) // 3
 }
 ```
 - Elixir like with statements should also be allowed.
@@ -97,6 +136,8 @@ end
 ```
 - You should be allowed to put exclusively classes, exclusively keywords or some other exclusive type as your enum.
 - You should have to opt into matching multiple statements.
+- Match statements shouldn't break by default seeing as I've never actually seen a statement that's supposed to match
+twice in the real world. (tenative)
 ```javascript
 switch(expression) {
   case x:
@@ -118,7 +159,6 @@ switch(expression) req break {
     // something
 }
 ```
-- Match statements shouldn't break. (tenative)
 
 - A switch or match statement statement should be allowed to evaluate to it's value
 ```javascript
@@ -136,9 +176,9 @@ console.log(num);
 
 ### Classes
 
-- There should be abstract classes
+- There should be abstract classes.
 - Developers should be allowed to limit the depth of classes or only allow classes to be formed from abstract classes.
-This should aliviate some of the - - head ache with deeply nested subclasses while giving the benifits of classes.
+This should aliviate some of the head ache with deeply nested subclasses while giving the benifits of classes.
 - You should be allowed to use Rust style traits or functions that are injected into a class.
 see [concepts/oop.md](https://github.com/Queyrouzec/dev_script/blob/main/concepts/oop.md) for more details
 
