@@ -4,15 +4,15 @@ A superset of Javascript
 This is an initial set of opinions on what a version of javascript made for developers would look like. It is currently
 very tentative.
 
-Because this is an initial opinion, outside input is strongly encouraged.
-Much of this takes inspration from Dart, Rust, and Elixir.
+Because this is an initial opinion, outside input is strongly encouraged.  
+Much of this takes inspration from Dart, Rust, and Elixir.  
 The syntax in this README is not the planned upon syntax; it is just what ever I thought would best convey my intent. It
 will be updated in the future to reflect the language.
 
 __Not all syntax or functions match or work in examples from specific languages. This is so that people who aren't from
-those languages can understand what's going on__
-for example `print(object)` is going to make more sense than `IO.inspect object`. Since this is a superset of JS, JS and
-TS syntax will be the only ones with complete accaracy when not disscussing ways to add to their syntax.
+those languages can understand what's going on.__  
+For example `print(object)` is going to clearer than `IO.inspect object`. Since this is a superset of JS, JS and
+TS syntax will be the only ones with complete accaracy when not disscussing ways to change to their syntax.
 
 ## Goals
 
@@ -42,13 +42,13 @@ TreeSitter grammer
 ### Should Cater to Server Side Rendering
 
 - Cannot be fast and sustainable without this.
-- This is a major part of the reason why there needs to be a built in minifier and TreeSitter support and the entire
-reason adding to the language is not tenative.
+- This is the entire reason adding to the language is not tenative.
+- This is a major part of the reason why there needs to be a built in minifier and TreeSitter support.
 
 ### You Should Be Allowed to Freely Remove from the Core Language
 
-- This may be a landmine, so it is tentative
-- This may be insignificant with a linter if the language is fast enough, so it is at the back of the queue
+- This may be a landmine, so it is tentative.
+- This may be insignificant with a linter if the language is fast enough, so it is at the back of the queue.
 - If there's a commen set of unused features that doesn't work with a server or that people don't want to use it should
 be removable from the language so that the compiler can move faster.
 
@@ -121,12 +121,11 @@ match (randomObject) {
 }
 ```
 - Elixir like with statements should also be allowed.
-```Elixir
-with 
-  # this statement must match in order to move on to the next one
-  {one: 1, two: two, arrayOfNumbers: array} -> someObject,
+```Elixir 
+# the first statement must match in order to move on to the second one
+with {one: 1, two: two, arrayOfNumbers: array} <- someObject,
   # you can use variables from previous statements
-  [1, 2, three] -> array do
+  [1, 2, three] <- array do
   print(two) # 2
   print(three) # 3
 else
