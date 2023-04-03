@@ -1,18 +1,19 @@
 # DevScript
+
 A superset of Javascript
 
 This is an initial set of opinions on what a version of javascript made for developers would look like. It is currently
 very tentative.
 
 Because this is an initial opinion, outside input is strongly encouraged.  
-Much of this takes inspration from Dart, Rust, and Elixir.  
+Much of this takes inspiration from Dart, Rust, and Elixir.  
 The syntax in this README is not the planned upon syntax; it is just what ever I thought would best convey my intent. It
 will be updated in the future to reflect the language.
 
-__Not all syntax or functions match or work in examples from specific languages. This is so that people who aren't from
-those languages can understand what's going on.__  
+**Not all syntax or functions match or work in examples from specific languages. This is so that people who aren't from
+those languages can understand what's going on.**  
 For example `print(object)` is going to clearer than `IO.inspect object`. Since this is a superset of JS, JS and
-TS syntax will be the only ones with complete accaracy when not disscussing ways to change to their syntax.
+TS syntax will be the only ones with complete accuracy when not discussing ways to change to their syntax.
 
 ## Goals
 
@@ -23,7 +24,7 @@ TS syntax will be the only ones with complete accaracy when not disscussing ways
 ### Complete Package
 
 - Minifier/uglifier
-- Syntax highlighting that can compile into TreeSitter highlighing. (More on this later)
+- Syntax highlighting that can compile into TreeSitter highlighting. (More on this later)
 - linter
 - package manager
 - dap
@@ -37,73 +38,81 @@ TS syntax will be the only ones with complete accaracy when not disscussing ways
 ### You Should Be Allowed to Freely Add to the Language
 
 - Will allow for the server to use all the built in tools for the language with little hassle including editing
-TreeSitter grammer
+  TreeSitter grammar
 
 ### Should Cater to Server Side Rendering
 
 - Cannot be fast and sustainable without this.
-- This is the entire reason adding to the language is not tenative.
+- This is the entire reason adding to the language is not tentative.
 - This is a major part of the reason why there needs to be a built in minifier and TreeSitter support.
 
 ### You Should Be Allowed to Freely Remove from the Core Language
 
 - This may be a landmine, so it is tentative.
 - This may be insignificant with a linter if the language is fast enough, so it is at the back of the queue.
-- If there's a commen set of unused features that doesn't work with a server or that people don't want to use it should
-be removable from the language so that the compiler can move faster.
+- If there's a common set of unused features that doesn't work with a server or that people don't want to use it should
+  be removable from the language so that the compiler can move faster.
 
 ### Everything should be allowed to exist inline in one document
 
-- HTML is glorified gui objects. That's not nessisarily a bad thing, but it should be better integrated with js.
+- HTML is glorified gui objects. That's not necessarily a bad thing, but it should be better integrated with js.
 - CSS is a glorified set of properties in a obscure way. This is potentially a bad thing.
 - You should be allowed to write tests inline without them being compiled into the final file and you should be allowed
-to put them in your documentation.
+  to put them in your documentation.
 
 ### Be as close to the language as possible
 
-- There should be no hidden compiler optimizations within reason. Compilation should be almost as preditcable as
-Typescript.
+- There should be no hidden compiler optimizations within reason. Compilation should be almost as predictable as
+  Typescript.
 - The compiler should take no performance away from Javascript even if you can blow your foot off.
 - This creates a problem with CSS because in order to make the most out of CSS you need to make use of the cascading
-part and give universal access to all - HTML objects. That option should still exist even if it is a massive foot gun.
-This makes choices with CSS very tenitive.
+  part and give universal access to all - HTML objects. That option should still exist even if it is a massive foot gun.
+  This makes choices with CSS very tentative.
 
 ### Intent is built in
 
 - The intent of the developer should be enforced by the language at every possible turn. This changes from topic to
-topic so we'll get into what this means further down.
+  topic so we'll get into what this means further down.
 
 ### State is a first class citizen.
 
-- State management should have it's own syntax for commen state management implementations.
+- State management should have it's own syntax for common state management implementations.
 
 ### Types
 
-- Strictly enforced. The compiler must know a variables type. There should be type infrances.
+- Strictly enforced. The compiler must know a variables type. There should be type inferences.
 - It should be null safe.
-- Types should be intimate with their declaration. Typedefs should not be seperate from their constructors.
+- Types should be intimate with their declaration. Typedefs should not be separate from their constructors.
 - I have an affinity for how Dart handles null and types.
 - All basic types should be 3 letters in length unless there is an otherwise compelling reason.
-- Declairation of types will be local by default and can take the place of let.
+- Declaration of types will be local by default and can take the place of let.
+
 ```javascript
 Str something = "hi";
 ```
+
 vs
+
 ```typescript
 let something: String = "hi";
 ```
+
 This is so that writing types will be as quick as declarations and make type declaration vs type inference a low cost
 choice.
+
 - If you want to use var it may look something like this
+
 ```javascript
 var Str something = "hi";
 ```
+
 - Types will be required for function parameters and returns. This is to keep your intent clear to other devs.
 
-### Mutablility
+### Mutability
 
-- Rust style mutablility.
-- Variables are immuntable by defualt; and if a function is going to change a variable, it should declare that change.
+- Rust style mutability.
+- Variables are immutable by default; and if a function is going to change a variable, it should declare that change.
+
 ```rust
   mut variable = "x";
 ```
@@ -114,14 +123,17 @@ var Str something = "hi";
 - There should be context that require you to use all of your enums.
 - Switch should be a JS switch statement while match compiles to `if(){} else if(){} else if(){} else{}`.
 - Match statements should allow for logical deconstruction and matches.
+
 ```javascript
 match (randomObject) {
   {one: 1, two: two} -> console.log(two) // 2
   [1, 2, three] -> console.log(three) // 3
 }
 ```
+
 - Elixir like with statements should also be allowed.
-```Elixir 
+
+```Elixir
 # the first statement must match in order to move on to the second one
 with {one: 1, two: two, arrayOfNumbers: array} <- someObject,
   # you can use variables from previous statements
@@ -134,10 +146,12 @@ else
   x -> print(x) # prints either someObject or array depending on what one doesn't match
 end
 ```
+
 - You should be allowed to put exclusively classes, exclusively keywords or some other exclusive type as your enum.
 - You should have to opt into matching multiple statements.
 - Match statements shouldn't break by default seeing as I've never actually seen a statement that's supposed to match
-twice in the real world. (tenative)
+  twice in the real world. (tentative)
+
 ```javascript
 switch(expression) {
   case x:
@@ -161,6 +175,7 @@ switch(expression) req break {
 ```
 
 - A switch or match statement statement should be allowed to evaluate to it's value
+
 ```javascript
 String num = switch(2) eval {
   case 1:
@@ -178,14 +193,15 @@ console.log(num);
 
 - There should be abstract classes.
 - Developers should be allowed to limit the depth of classes or only allow classes to be formed from abstract classes.
-This should aliviate some of the head ache with deeply nested subclasses while giving the benifits of classes.
+  This should alleviate some of the head ache with deeply nested subclasses while giving the benefits of classes.
 - You should be allowed to use Rust style traits or functions that are injected into a class.
-see [concepts/oop.md](https://github.com/Queyrouzec/dev_script/blob/main/concepts/oop.md) for more details
+  see [concepts/oop.md](https://github.com/Queyrouzec/dev_script/blob/main/concepts/oop.md) for more details
 
 ### Code organization
 
 - include modules
 - include Elixir style aritable functions:
+
 ```javascript
 // different functions that can all be called based on what is passed to doSomething
 doSomething() => 1;
@@ -194,15 +210,19 @@ doSomething(x) => x;
 doSomething(Int one: x) => x;
 doSomething(Int two: y) => y;
 ```
+
 - include the ability to call different functions based on parameter type like in Rust
+
 ```javascript
 doSomething(Int x) => console.log(x + 1);
 doSomething(String y) => console.log(y);
 doSomething("hi");
 // "hi"
 ```
-This helps discoverability, organization, and reduces the wordiness of functions in implimentation. It also allows you
-to seperate logic much easier.
+
+This helps discoverability, organization, and reduces the wordiness of functions in implementation. It also allows you
+to separate logic much easier.
+
 ```javascript
 searchDogByHairColor(String color) {
   // ...
@@ -229,7 +249,7 @@ searchDog(String name: name) {
 
 ### Try Catch Will Stay But There Will Be Other Options to Avoid Hidden Control Flow
 
-- There should be a built in way to propigate errors
+- There should be a built in way to propagate errors
 - There will be a explicit style of error like in rust that doesn't crash the program.
 
 ### The `this` Keyword Either a Bug or Someone Who Thought He Was Being Clever. Either Way It's Silly
@@ -239,14 +259,15 @@ searchDog(String name: name) {
 ## Wish List
 
 ### DevScript Terminal
+
 - BASH is never used as a language. In fact, sometimes I forget it is a language.
-- Static type setting can probably improve the terminal experiance.
+- Static type setting can probably improve the terminal experience.
 - Extensibility of the language can allow for built in BASH style parameter support.
 - As a scripting language, as long as it isn't used for terminal based projects but instead calls terminal based
-projects (I'm looking at you Python), it can be very fast at running programs.
-- It would need to have sub enviorments because envs are a hassle otherwise.
-- We must complete the if it can be writting in JS it will be written in JS meme.
-- This will require removing parenthsis from functions which isn't a priority.
+  projects (I'm looking at you Python), it can be very fast at running programs.
+- It would need to have sub environments because envs are a hassle otherwise.
+- We must complete the if it can be writing in JS it will be written in JS meme.
+- This will require removing parenthesis from functions which isn't a priority.
 
 ## It will be written in Rust
 
